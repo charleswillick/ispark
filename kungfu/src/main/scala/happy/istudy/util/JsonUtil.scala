@@ -1,4 +1,4 @@
-package com.iflytek.util
+package happy.istudy.util
 
 import net.liftweb.json._
 
