@@ -50,11 +50,71 @@ class BinarySearchTree[T <% Comparable[T]] {
 
   }
 
+  /**
+    * 按中序遍历的方法打印所有节点的值
+    */
   def printTree(): Unit ={
     val root = this.root
-    if(root.left!= null) new BinarySearchTree[T](root.left).printTree()
-    println(root.key)
-    if(root.right!= null) new BinarySearchTree[T](root.right).printTree()
-}
+    printNode(root)
+  }
+
+  /**
+    * 按中序遍历打印节点的值和左右节点
+    * @param node
+    */
+  private def printNode(node: Node[T]): Unit ={
+    inorderTravel(node,(x:Node[T]) => println(x.key))
+  }
+
+  /**
+    * 中序遍历一棵树
+    * @param func 遍历节点的方法
+    */
+  def inorderTravel(func:Node[T] => Any): Unit ={
+    val root = this.root
+    inorderTravel(root,func)
+  }
+
+  /**
+    * 前序遍历
+    * @param func
+    */
+  def preorderTravel(func:Node[T] => Any): Unit ={
+    val root = this.root
+    preorderTravel(root,func)
+  }
+
+  /**
+    * 后续遍历一棵树
+    * @param func
+    */
+  def postorderTravel(func:Node[T] => Any): Unit ={
+    val root = this.root
+    postorderTravel(root,func)
+  }
+
+  private def inorderTravel(node: Node[T],func:Node[T] => Any): Unit ={
+    if(node != null){
+      if(node.left != null) inorderTravel(node.left,func)
+      func(node)
+      if(node.right != null) inorderTravel(node.right,func)
+    }
+  }
+
+  private def preorderTravel(node: Node[T],func:Node[T] => Any): Unit ={
+    if(node != null){
+      func(node)
+      if(node.left != null) preorderTravel(node.left,func)
+      if(node.right != null) preorderTravel(node.right,func)
+    }
+  }
+
+  private def postorderTravel(node: Node[T],func:Node[T] => Any): Unit ={
+    if(node != null){
+      if(node.left != null) postorderTravel(node.left,func)
+      if(node.right != null) postorderTravel(node.right,func)
+      func(node)
+    }
+  }
 
 }
