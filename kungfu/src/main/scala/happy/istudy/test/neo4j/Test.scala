@@ -28,9 +28,9 @@ object Test {
 
     //match 查询
 
-    val result = session.run("match (p:Person) where p.name = '刘刚' return p")
+    val result = session.run("match (p:Person {name:'刘刚'}) return p")
     println(result.next().get("p").asNode().get("name"))
-    println(result.next().get("p").asNode().get("name"))
+//    println(result.next().get("p").asNode().get("name"))
     session.close()
 
   }
