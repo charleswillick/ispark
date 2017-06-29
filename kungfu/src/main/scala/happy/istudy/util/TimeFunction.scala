@@ -21,6 +21,12 @@ object TimeFunction {
     dt.getTime.toString
   }
 
+  def getTime(str:String,format:String = "yyyyMMdd"):Long = {
+    val df = new SimpleDateFormat(format)
+    val dt = df.parse(str)
+    dt.getTime
+  }
+
   /**
    *
    * param 输入时间 20150101格式
