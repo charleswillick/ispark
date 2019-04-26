@@ -9,7 +9,7 @@ object creationSite {
   def main(args: Array[String]) {
     val sc = SparkContextUtil.createSparkContext("local",this.getClass.getName)
     sc.stop()
-    val data = sc.parallelize(Seq(1,2))
+    val data = sc.parallelize(Seq(1,23))
     data.collect().foreach(println)
   }
 
